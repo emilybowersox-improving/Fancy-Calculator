@@ -9,16 +9,13 @@ namespace FancyCalculator
         {
             Console.WriteLine("Fancy Calculator");
 
-            decimal number1 = 0;
-            decimal number2 = 0;
-            decimal results = 0;
+            decimal number1 = 0m;
+            decimal number2 = 0m;
+            decimal results = 0m;
 
             string fullInput = "";
             char[] delimiterChars = { ' ' };
-/*            char[] delimiterChars = { ' ', '+', '-', '*', '/' };*/
             string[] inputs = new string[3];
-                
-            fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
             do
                 {
@@ -26,12 +23,6 @@ namespace FancyCalculator
                 fullInput = Console.ReadLine();
                 inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
-/*                inputs = Regex.Split(fullInput.Trim(), "(?<=[+*//*-])"); 
-                Console.WriteLine(inputs);
-                Console.WriteLine(inputs[0]);
-                Console.WriteLine(inputs[1]);
-                Console.WriteLine(inputs[2]);
-                Console.ReadLine();*/
 
                 if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
                     {
@@ -39,14 +30,20 @@ namespace FancyCalculator
                     }
                     else
                     {
+                    if (inputs[1] != "+" || inputs[1] != "-" || inputs[1] != "*" || inputs[1] != "/")
+                    {
+                        Console.WriteLine(inputs[1] + " is not a valid operator");
+                        } else {
                         Console.WriteLine(fullInput + " is not a valid expression");
+                    }
+                    
+                      
                     }
                 } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
 
 
             string i = inputs[1];
             
-
             switch (i)
             {
                 case "+":
@@ -63,14 +60,8 @@ namespace FancyCalculator
                     break;
             }
 
-         /*   results = number1 + number2;*/
-
-
             Console.WriteLine("Your result is " + results);
             Console.ReadLine();
-
-
-
 
         }
     }
