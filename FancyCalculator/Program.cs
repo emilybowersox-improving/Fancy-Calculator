@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace FancyCalculator
 {
@@ -13,8 +14,9 @@ namespace FancyCalculator
             decimal results = 0;
 
             string fullInput = "";
-            char[] delimiterChars = { ' ', '+' };
-            string[] inputs = new string[2];
+            char[] delimiterChars = { ' ' };
+/*            char[] delimiterChars = { ' ', '+', '-', '*', '/' };*/
+            string[] inputs = new string[3];
                 
             fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
@@ -23,7 +25,15 @@ namespace FancyCalculator
                 Console.WriteLine("Enter what you would like to see added:");
                 fullInput = Console.ReadLine();
                 inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
-                if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[1], out number2) == true)
+
+/*                inputs = Regex.Split(fullInput.Trim(), "(?<=[+*//*-])"); 
+                Console.WriteLine(inputs);
+                Console.WriteLine(inputs[0]);
+                Console.WriteLine(inputs[1]);
+                Console.WriteLine(inputs[2]);
+                Console.ReadLine();*/
+
+                if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
                     {
                         break;
                     }
@@ -31,10 +41,30 @@ namespace FancyCalculator
                     {
                         Console.WriteLine(fullInput + " is not a valid expression");
                     }
-                } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[1], out number2) == false);
+                } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
 
-  
-            results = number1 + number2;
+
+            string i = inputs[1];
+            
+
+            switch (i)
+            {
+                case "+":
+                    results = number1 + number2;
+                    break;
+                case "-":
+                    results = number1 - number2;
+                    break;
+                case "*":
+                    results = number1 * number2;
+                    break;
+                case "/":
+                    results = number1 / number2;
+                    break;
+            }
+
+         /*   results = number1 + number2;*/
+
 
             Console.WriteLine("Your result is " + results);
             Console.ReadLine();
