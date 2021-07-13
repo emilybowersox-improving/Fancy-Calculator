@@ -24,6 +24,10 @@ namespace TestableCalculatorRunner
                 {
                     Console.WriteLine(myResults.Result);
                 }
+                else if (userInput == "exit")
+                {
+                    break;
+                }
                 else
                 {
                     Console.WriteLine(myResults.ErrorMessage);

@@ -23,6 +23,22 @@ namespace CalculatorCore
 
             inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
+            if (inputs.Length != 3)
+            {
+                return new EvaluationResult { ErrorMessage = $"{fullInput} is not valid. Input must be be in the form 3 + 5" };
+            }
+
+            if (decimal.TryParse(inputs[0], out number1) == false)
+            {
+                return new EvaluationResult { ErrorMessage = $"{inputs[0]} is not a valid number" };
+            }
+
+            if (decimal.TryParse(inputs[2], out number2) == false)
+            {
+                return new EvaluationResult { ErrorMessage = $"{inputs[2]} is not a valid number" };
+            }
+
+
             if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
             {
                 string i = inputs[1];
@@ -42,18 +58,17 @@ namespace CalculatorCore
                         results = number1 / number2;
                         break;
                     default:
+                    /*    throw new NotImplementedException("Not a valid operator");*/
                         return new EvaluationResult { ErrorMessage = $"{inputs[1]} is not a valid operator- try +, -, *, or /" };
                 }
 
                 return new EvaluationResult { Result = results };
             }
 
+
             else
             {
                 return new EvaluationResult { ErrorMessage = $"{fullInput} is not a valid expression" };
-
-    
-
             }
 
 

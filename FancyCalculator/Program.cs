@@ -18,61 +18,63 @@ namespace FancyCalculator
             string[] inputs = new string[3];
             string userContinue = "";
             string userExit = "exit";
-         
 
-            do
-            {
-                Console.WriteLine("Would you like to continue? Type exit to exit, or press enter to continue");
-                userContinue = Console.ReadLine();
-                Console.WriteLine(userContinue);
-                Console.WriteLine(!userContinue.Equals(userExit));
 
+      
                 do
                 {
-                    Console.WriteLine("Enter what you would like to see added:");
-                    fullInput = Console.ReadLine();
-                    inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+                    Console.WriteLine("Would you like to continue? Type exit to exit, or press enter to continue");
+                    userContinue = Console.ReadLine();
+                    Console.WriteLine(userContinue);
+                    Console.WriteLine(!userContinue.Equals(userExit));
 
-
-                    if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
+                    do
                     {
-                        string i = inputs[1];
+                        Console.WriteLine("Enter what you would like to see added:");
+                        fullInput = Console.ReadLine();
+                        inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
-                        switch (i)
+
+                        if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
                         {
-                            case "+":
-                                results = number1 + number2;
-                                break;
-                            case "-":
-                                results = number1 - number2;
-                                break;
-                            case "*":
-                                results = number1 * number2;
-                                break;
-                            case "/":
-                                results = number1 / number2;
-                                break;
-                            default:
-                                throw new NotImplementedException("Not a valid operator");
+                            string i = inputs[1];
+
+                            switch (i)
+                            {
+                                case "+":
+                                    results = number1 + number2;
+                                    break;
+                                case "-":
+                                    results = number1 - number2;
+                                    break;
+                                case "*":
+                                    results = number1 * number2;
+                                    break;
+                                case "/":
+                                    results = number1 / number2;
+                                    break;
+                                default:
+                                    throw new NotImplementedException("Not a valid operator");
+                            }
+                            Console.WriteLine("Your result is " + results);
+                            break;
+
+
                         }
-                        Console.WriteLine("Your result is " + results);
-                        break;
-                     
-
-                    }
-                    else
-                    {
-                        Console.WriteLine($"'{fullInput} is not a valid expression");
+                        else
+                        {
+                            Console.WriteLine($"'{fullInput} is not a valid expression");
 
 
-                    }
-                } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
+                        }
+                    } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
 
 
-                // this while statement is not working --needs to evaluate to true or false
-                //this statement is evaluating to false...
-            } while (!userContinue.Equals(userExit));
-
+                    // this while statement is not working --needs to evaluate to true or false
+                    //this statement is evaluating to false...
+                    // if statement?...
+                } while (!userContinue.Equals(userExit));
+            
 
 
      
