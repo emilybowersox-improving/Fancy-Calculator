@@ -53,14 +53,14 @@ namespace CalculatorCore.Tests
         public void CheckErrorMessage()
         {
             EvaluationResult result = _calc.Evaluate("6 + asd");
-            Assert.AreEqual("6 + asd is not a valid expression", result.ErrorMessage);
+            Assert.AreEqual("asd is not a valid number", result.ErrorMessage);
         }
 
         [TestMethod]
         public void CheckErrorMessage2()
         {
             EvaluationResult result = _calc.Evaluate("hello * 7.2");
-            Assert.AreEqual("hello * 7.2 is not a valid expression", result.ErrorMessage);
+            Assert.AreEqual("hello is not a valid number", result.ErrorMessage);
         }
 
         [TestMethod]
