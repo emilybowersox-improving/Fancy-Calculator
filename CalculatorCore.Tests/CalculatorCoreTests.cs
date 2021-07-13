@@ -70,5 +70,12 @@ namespace CalculatorCore.Tests
             Assert.AreEqual("plus is not a valid operator- try +, -, *, or /", result.ErrorMessage);
         }
 
+        [TestMethod]
+        public void CheckFullInputLength()
+        {
+            EvaluationResult result = _calc.Evaluate("6 +");
+            Assert.AreEqual("6 + is not valid. Input must be be in the form 3 + 5", result.ErrorMessage);
+        }
+
     }
 }
