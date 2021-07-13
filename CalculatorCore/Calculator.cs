@@ -66,9 +66,9 @@ namespace CalculatorCore
 
             inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
-            if (inputs.Length != 3)
+            if (inputs.Length != 3 && inputs.Length != 2)
             {
-                return new EvaluationResult { ErrorMessage = $"{fullInput} is not valid. Input must be be in the form 3 + 5" };
+                return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not valid. Input must be be in the form '3 + 5' or '+ 5'" };
             }
 
             if (decimal.TryParse(inputs[0], out number1) == false)
@@ -124,10 +124,10 @@ namespace CalculatorCore
             }
 
 
-
-
-
-
         }
+
+
+        public History()
+
         }
     }
