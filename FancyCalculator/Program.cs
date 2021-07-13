@@ -25,6 +25,7 @@ namespace FancyCalculator
                 Console.WriteLine("Would you like to continue? Type exit to exit, or press enter to continue");
                 userContinue = Console.ReadLine();
                 Console.WriteLine(userContinue);
+                Console.WriteLine(!userContinue.Equals(userExit));
 
                 do
                 {
@@ -69,6 +70,7 @@ namespace FancyCalculator
 
 
                 // this while statement is not working --needs to evaluate to true or false
+                //this statement is evaluating to false...
             } while (!userContinue.Equals(userExit));
 
 

@@ -17,7 +17,14 @@ namespace TestableCalculatorRunner
 
             var myResults = calculator.Evaluate(userInput);
 
-            Console.WriteLine(myResults.Result);
+
+            if (myResults.Result != 0)
+            {
+                Console.WriteLine(myResults.Result);
+            } else
+            {
+                Console.WriteLine(myResults.ErrorMessage);
+            }
         }
     }
 }
