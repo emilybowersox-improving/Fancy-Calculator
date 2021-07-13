@@ -68,7 +68,7 @@ namespace FancyCalculator
                 } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
 
 
-
+                // this while statement is not working --needs to evaluate to true or false
             } while (!userContinue.Equals(userExit));
 
 

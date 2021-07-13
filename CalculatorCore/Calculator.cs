@@ -42,7 +42,7 @@ namespace CalculatorCore
                         results = number1 / number2;
                         break;
                     default:
-                        throw new NotImplementedException("Not a valid operator");
+                        return new EvaluationResult { ErrorMessage = $"{inputs[1]} is not a valid operator- try +, -, *, or /" };
                 }
 
                 return new EvaluationResult { Result = results };
@@ -50,19 +50,9 @@ namespace CalculatorCore
 
             else
             {
-                //
-                //
-                // i want to print an error message here- not break out of my do-while loop
                 return new EvaluationResult { ErrorMessage = $"{fullInput} is not a valid expression" };
 
-                /*         if (inputs[1] != "+" || inputs[1] != "-" || inputs[1] != "*" || inputs[1] != "/")
-                         {
-                             return new EvaluationResult { ErrorMessage = $"'{inputs[1]}' is not a valid operator" };
-                         }
-                         else
-                         {
-                             return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not a valid expression" };
-                         }*/
+    
 
             }
 

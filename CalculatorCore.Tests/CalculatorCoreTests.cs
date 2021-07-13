@@ -56,11 +56,19 @@ namespace CalculatorCore.Tests
             Assert.AreEqual("6 + asd is not a valid expression", result.ErrorMessage);
         }
 
-/*        [TestMethod]
+        [TestMethod]
+        public void CheckErrorMessage2()
+        {
+            EvaluationResult result = _calc.Evaluate("hello * 7.2");
+            Assert.AreEqual("hello * 7.2 is not a valid expression", result.ErrorMessage);
+        }
+
+        [TestMethod]
         public void CheckOperatorErrorMessage()
         {
             EvaluationResult result = _calc.Evaluate("6 plus 7");
-            Assert.AreEqual("plus is not a valid operator", result.ErrorMessage);
-        }*/
+            Assert.AreEqual("plus is not a valid operator- try +, -, *, or /", result.ErrorMessage);
+        }
+
     }
 }
