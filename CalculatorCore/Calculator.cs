@@ -3,22 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace CalculatorCore
 {
     public class Calculator
     {
+        private decimal savedNumber = 0m;
+        private decimal number1 = 0m;
+        private decimal number2 = 0m;
         public EvaluationResult Evaluate(string fullInput)
         {
-            decimal number1 = 0m;
-            decimal number2 = 0m;
+
             decimal results;
 
             char[] delimiterChars = { ' ' };
             string[] inputs = new string[3];
             string[] contInput = new string[2];
 
-            decimal savedNumber = 0m;
+          /*  string savedValue = "";*/
+        
 
 
             //for continued operations
@@ -49,6 +54,7 @@ namespace CalculatorCore
                             /*    throw new NotImplementedException("Not a valid operator");*/
                             return new EvaluationResult { ErrorMessage = $"{contInput[0]} is not a valid continuing operator- try +, -, *, or /" };
                     }
+                    savedNumber = results;
                     return new EvaluationResult { Result = results };
                 }
             }
@@ -98,8 +104,17 @@ namespace CalculatorCore
                     /*    throw new NotImplementedException("Not a valid operator");*/
                         return new EvaluationResult { ErrorMessage = $"{inputs[1]} is not a valid operator- try +, -, *, or /" };
                 }
+                /*  var key = "my-key";*/
 
+                /*                var str = JsonConvert.SerializeObject(new EvaluationResult { Result = results });
+                                context.Session.SetString(savedValue, str);*/
+
+                /*              // Retrieve
+                              var str = context.Session.GetString(key);
+                              var obj = JsonConvert.DeserializeObject<MyType>(str);*/
+                savedNumber = results;
                 return new EvaluationResult { Result = results };
+                
             }
 
 
