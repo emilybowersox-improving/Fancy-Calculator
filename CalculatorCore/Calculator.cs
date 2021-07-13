@@ -20,57 +20,57 @@ namespace CalculatorCore
 
 
 
-            do
+
+            inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+
+            if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
             {
-                inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+                string i = inputs[1];
 
-                if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
+                switch (i)
                 {
-                    break;
+                    case "+":
+                        results = number1 + number2;
+                        break;
+                    case "-":
+                        results = number1 - number2;
+                        break;
+                    case "*":
+                        results = number1 * number2;
+                        break;
+                    case "/":
+                        results = number1 / number2;
+                        break;
+                    default:
+                        throw new NotImplementedException("Not a valid operator");
                 }
-                else
-                {
-                    //
-                    //
-                    // i want to print an error message here- not break out of my do-while loop
-                    return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not a valid expression" };
 
-           /*         if (inputs[1] != "+" || inputs[1] != "-" || inputs[1] != "*" || inputs[1] != "/")
-                    {
-                        return new EvaluationResult { ErrorMessage = $"'{inputs[1]}' is not a valid operator" };
-                    }
-                    else
-                    {
-                        return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not a valid expression" };
-                    }*/
-
-                }
-            } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
-
-
-
-
-            string i = inputs[1];
-
-            switch (i)
-            {
-                case "+":
-                    results = number1 + number2;
-                    break;
-                case "-":
-                    results = number1 - number2;
-                    break;
-                case "*":
-                    results = number1 * number2;
-                    break;
-                case "/":
-                    results = number1 / number2;
-                    break;
-                default:
-                    throw new NotImplementedException("Not a valid operator");
+                return new EvaluationResult { Result = results };
             }
 
-            return new EvaluationResult { Result = results };
+            else
+            {
+                //
+                //
+                // i want to print an error message here- not break out of my do-while loop
+                return new EvaluationResult { ErrorMessage = $"{fullInput} is not a valid expression" };
+
+                /*         if (inputs[1] != "+" || inputs[1] != "-" || inputs[1] != "*" || inputs[1] != "/")
+                         {
+                             return new EvaluationResult { ErrorMessage = $"'{inputs[1]}' is not a valid operator" };
+                         }
+                         else
+                         {
+                             return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not a valid expression" };
+                         }*/
+
+            }
+
+
+
+
+
+
+        }
         }
     }
-}

@@ -16,52 +16,65 @@ namespace FancyCalculator
             string fullInput = "";
             char[] delimiterChars = { ' ' };
             string[] inputs = new string[3];
+            string userContinue = "";
+            string userExit = "exit";
+         
 
             do
+            {
+                Console.WriteLine("Would you like to continue? Type exit to exit, or press enter to continue");
+                userContinue = Console.ReadLine();
+                Console.WriteLine(userContinue);
+
+                do
                 {
-                Console.WriteLine("Enter what you would like to see added:");
-                fullInput = Console.ReadLine();
-                inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+                    Console.WriteLine("Enter what you would like to see added:");
+                    fullInput = Console.ReadLine();
+                    inputs = fullInput.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
 
-                if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
+                    if (decimal.TryParse(inputs[0], out number1) == true && decimal.TryParse(inputs[2], out number2) == true)
                     {
+                        string i = inputs[1];
+
+                        switch (i)
+                        {
+                            case "+":
+                                results = number1 + number2;
+                                break;
+                            case "-":
+                                results = number1 - number2;
+                                break;
+                            case "*":
+                                results = number1 * number2;
+                                break;
+                            case "/":
+                                results = number1 / number2;
+                                break;
+                            default:
+                                throw new NotImplementedException("Not a valid operator");
+                        }
+                        Console.WriteLine("Your result is " + results);
                         break;
+                     
+
                     }
                     else
                     {
-                    if (inputs[1] != "+" || inputs[1] != "-" || inputs[1] != "*" || inputs[1] != "/")
-                    {
-                        Console.WriteLine(inputs[1] + " is not a valid operator");
-                        } else {
-                        Console.WriteLine(fullInput + " is not a valid expression");
-                    }
-                    
-                      
+                        Console.WriteLine($"'{fullInput} is not a valid expression");
+
+
                     }
                 } while (decimal.TryParse(inputs[0], out number1) == false || decimal.TryParse(inputs[2], out number2) == false);
 
 
-            string i = inputs[1];
-            
-            switch (i)
-            {
-                case "+":
-                    results = number1 + number2;
-                    break;
-                case "-":
-                    results = number1 - number2;
-                    break;
-                case "*":
-                    results = number1 * number2;
-                    break;
-                case "/":
-                    results = number1 / number2;
-                    break;
-            }
 
-            Console.WriteLine("Your result is " + results);
-            Console.ReadLine();
+            } while (!userContinue.Equals(userExit));
+
+
+
+     
+         
 
         }
     }
