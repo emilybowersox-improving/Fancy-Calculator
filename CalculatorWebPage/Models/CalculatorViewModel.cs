@@ -9,13 +9,10 @@ namespace CalculatorWebPage.Models
     public class CalculatorViewModel
     {
 
-
         public EvaluationResult UserResult { get; set; }
-
 
 
         public List<EvaluationResult> DisplayedHistory { get; set; }
 
-   
     }
 }

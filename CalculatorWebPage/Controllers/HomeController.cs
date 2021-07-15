@@ -22,15 +22,6 @@ namespace CalculatorWebPage.Controllers
             _logger = logger;
         }
 
-/*        public IActionResult Index()
-        {
-            var userSavedNumber = HttpContext.Session.Get<CalcInput>("SavedNumber");
-            var vm = new CalculatorViewModel();
-            vm.LastNumber = userSavedNumber;
-
-            return View(vm);
-        }*/
-
 
         public IActionResult Index()
         {
@@ -48,6 +39,7 @@ namespace CalculatorWebPage.Controllers
             return View(vm);
         }
 
+
         [HttpPost]
         public IActionResult Index(string userNumber)
         {
@@ -62,20 +54,11 @@ namespace CalculatorWebPage.Controllers
             var calculator = new Calculator();
             var vm = new CalculatorViewModel();
 
+            vm.DisplayedHistory = calculator.DisplayHistory();
 
-            return View();
+            return View(vm);
         }
 
-
-
-
-/*        [HttpPost] 
-        public IActionResult Index(CalcInput userNumber)
-        {
-            HttpContext.Session.Set("SavedNumber", userNumber);
-      
-            return RedirectToAction("Index");
-        }*/
 
         public IActionResult Privacy()
         {

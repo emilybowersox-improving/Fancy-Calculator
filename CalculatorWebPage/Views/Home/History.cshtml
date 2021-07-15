@@ -2,6 +2,23 @@
     ViewData["Title"] = "History";
 }
 
+@model CalculatorViewModel
 
 
-<h3>Here is your mathematical history:</h3>
+@if (Model.DisplayedHistory.Count > 0)
+{
+    <h3>Here is your mathematical history:</h3>
+
+    @foreach (var element in Model.DisplayedHistory)
+    {
+        <p>Your eqaution @element.Equation yieled the result @element.Result</p>
+    }
+
+} 
+
+
+@if (Model.DisplayedHistory.Count == 0)
+            {
+                <h3>Looks like you don't have any history yet- go solve some equations!</h3>
+            }
+

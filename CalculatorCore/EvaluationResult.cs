@@ -12,7 +12,5 @@ namespace CalculatorCore
         public string ErrorMessage { get; set; }
         public string Equation { get; set; }
 
-
-       
     }
 }

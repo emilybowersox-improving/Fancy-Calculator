@@ -13,21 +13,15 @@ namespace CalculatorCore
         private decimal savedNumber = 0m;
         private decimal number1 = 0m;
         private decimal number2 = 0m;
-
         private List<EvaluationResult> _calcHistory = new List<EvaluationResult>();
 
 
         public EvaluationResult Evaluate(string fullInput)
         {
-
             decimal results;
-
             char[] delimiterChars = { ' ' };
             string[] inputs = new string[3];
             string[] contInput = new string[2];
-
-          /*  string savedValue = "";*/
-        
 
 
             //for continued operations
@@ -67,9 +61,6 @@ namespace CalculatorCore
                     return currentResult;
                 }
             }
-
-            
-
 
 
 
@@ -113,48 +104,25 @@ namespace CalculatorCore
                         /*    throw new NotImplementedException("Not a valid operator");*/
                         return new EvaluationResult { ErrorMessage = $"{inputs[1]} is not a valid operator- try +, -, *, or /" };
                 }
-                /*  var key = "my-key";*/
 
-                /*                var str = JsonConvert.SerializeObject(new EvaluationResult { Result = results });
-                                context.Session.SetString(savedValue, str);*/
-
-                /*              // Retrieve
-                              var str = context.Session.GetString(key);
-                              var obj = JsonConvert.DeserializeObject<MyType>(str);*/
                 savedNumber = results;
                 EvaluationResult currentResult = new EvaluationResult{Result = results, Equation = fullInput};
                 AddHistory(currentResult);
 
                 return new EvaluationResult { Result = results, Equation = fullInput };
-                
             }
-
-
             else
             {
                 return new EvaluationResult { ErrorMessage = $"{fullInput} is not a valid expression" };
             }
-
-
         }
 
 
         public List<EvaluationResult> AddHistory(EvaluationResult newResult)
         {
-
             _calcHistory.Add(newResult);
-
             return _calcHistory;
 
-/*            var historyResult = new List<EvaluationResult>
-            {
-              
-                new EvaluationResult { Equation = "history example", Result = 1 }
-            };
-
-            .Add(newResult);
-     
-            return historyResult;*/
         }
 
 
@@ -163,16 +131,6 @@ namespace CalculatorCore
             return _calcHistory;
         }
 
-/*        public List<EvaluationResult> ShowHistory()
-        {
-            var historyResult = new List<EvaluationResult>
-            {
-
-                new EvaluationResult { Equation = "history example", Result = 1 }
-            };
-            return historyResult;
-        }
-*/
 
 
 
