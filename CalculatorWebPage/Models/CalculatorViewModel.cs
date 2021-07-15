@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CalculatorCore;
 
 namespace CalculatorWebPage.Models
 {
@@ -11,5 +12,13 @@ namespace CalculatorWebPage.Models
         public CalcInput LastNumber { get; set; }
 
         public List<CalcInput> AllNumbers { get; set; }
+
+
+
+
+
+
+
+   
     }
 }

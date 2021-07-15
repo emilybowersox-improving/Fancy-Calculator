@@ -7,6 +7,7 @@ using CalculatorWebPage.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using CalculatorCore;
 
 namespace CalculatorWebPage.Controllers
 {
@@ -21,27 +22,49 @@ namespace CalculatorWebPage.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+/*        public IActionResult Index()
         {
             var userSavedNumber = HttpContext.Session.Get<CalcInput>("SavedNumber");
- 
-          
-                
-                var vm = new CalculatorViewModel();
+            var vm = new CalculatorViewModel();
+            vm.LastNumber = userSavedNumber;
 
-                vm.LastNumber = userSavedNumber;
+            return View(vm);
+        }*/
 
-                return View(vm);
+
+        public IActionResult Index()
+        {
+            var userSavedNumber = HttpContext.Session.GetString("EvaluateNumber");
+
+            if (userSavedNumber != null)
+            {
+                EvaluationResult _calculatedNumber = new EvaluationResult();
+                var calculator = new Calculator();
+                var newNumber = calculator.Evaluate(userSavedNumber);
+            }
+
+            return View();
 
         }
 
-        [HttpPost] 
+        [HttpPost]
+        public IActionResult Index(string userNumber)
+        {
+            HttpContext.Session.SetString("EvaluateNumber", userNumber);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+/*        [HttpPost] 
         public IActionResult Index(CalcInput userNumber)
         {
             HttpContext.Session.Set("SavedNumber", userNumber);
       
             return RedirectToAction("Index");
-        }
+        }*/
 
         public IActionResult Privacy()
         {

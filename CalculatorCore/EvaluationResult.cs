@@ -11,5 +11,7 @@ namespace CalculatorCore
         public decimal Result { get; set; }
         public string ErrorMessage { get; set; }
         public string Equation { get; set; }
+
+
     }
 }

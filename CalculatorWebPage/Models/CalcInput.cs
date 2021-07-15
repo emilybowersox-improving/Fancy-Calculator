@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CalculatorCore;
 
 namespace CalculatorWebPage.Models
 {
@@ -9,6 +10,7 @@ namespace CalculatorWebPage.Models
     {
         public decimal Number { get; set; }
 
-  
+     
+
     }
 }
