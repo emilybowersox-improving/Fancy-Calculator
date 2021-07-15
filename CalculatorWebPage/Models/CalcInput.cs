@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace CalculatorWebPage.Models
 {
-    public class CalculatorModel
+    public class CalcInput
     {
-        string savedNumber { get; set; }
+        public decimal Number { get; set; }
 
+  
     }
 }

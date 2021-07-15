@@ -23,21 +23,23 @@ namespace CalculatorWebPage.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var userSavedNumber = HttpContext.Session.Get<CalcInput>("SavedNumber");
+ 
+          
+                
+                var vm = new CalculatorViewModel();
+
+                vm.LastNumber = userSavedNumber;
+
+                return View(vm);
+
         }
 
         [HttpPost] 
-        public IActionResult Index(decimal userNumber)
+        public IActionResult Index(CalcInput userNumber)
         {
-
-/*            HttpContext.Session.Set("SavedNumber", yourNumber);*/
-            /*     var vm = new CalculatorViewModel
-                 {
-                     LastSavedNumber = lastSavedNumber
-                 };*/
             HttpContext.Session.Set("SavedNumber", userNumber);
       
-         
             return RedirectToAction("Index");
         }
 
