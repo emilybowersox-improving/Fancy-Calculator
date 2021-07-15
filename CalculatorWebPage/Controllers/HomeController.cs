@@ -54,7 +54,9 @@ namespace CalculatorWebPage.Controllers
             var calculator = new Calculator();
             var vm = new CalculatorViewModel();
 
+            calculator.DisplayHistory();
             vm.DisplayedHistory = calculator.DisplayHistory();
+
 
             return View(vm);
         }
