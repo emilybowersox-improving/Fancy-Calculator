@@ -19,14 +19,13 @@ namespace TestableCalculatorRunner
                 userInput = Console.ReadLine();
 
                 var myResults = calculator.Evaluate(userInput);
-                var showHistory = calculator.ShowHistory();
+                var showHistory = calculator.DisplayHistory();
 
                 if (userInput == "history")
                 {
                     foreach (EvaluationResult element in showHistory)
                     {
-                        Console.WriteLine($"{element.Equation}, {element.Result}");
-                  
+                        Console.WriteLine($"Your equation {element.Equation} resulted in {element.Result}");
                     }
                   
                 }

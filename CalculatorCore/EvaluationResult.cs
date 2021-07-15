@@ -13,5 +13,6 @@ namespace CalculatorCore
         public string Equation { get; set; }
 
 
+       
     }
 }

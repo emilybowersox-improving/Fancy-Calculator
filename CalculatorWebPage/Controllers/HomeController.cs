@@ -59,6 +59,10 @@ namespace CalculatorWebPage.Controllers
 
         public IActionResult History()
         {
+            var calculator = new Calculator();
+            var vm = new CalculatorViewModel();
+
+
             return View();
         }
 

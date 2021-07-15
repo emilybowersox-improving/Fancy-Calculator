@@ -13,6 +13,10 @@ namespace CalculatorCore
         private decimal savedNumber = 0m;
         private decimal number1 = 0m;
         private decimal number2 = 0m;
+
+        private List<EvaluationResult> _calcHistory = new List<EvaluationResult>();
+
+
         public EvaluationResult Evaluate(string fullInput)
         {
 
@@ -55,8 +59,12 @@ namespace CalculatorCore
                             return new EvaluationResult { ErrorMessage = $"{contInput[0]} is not a valid continuing operator- try +, -, *, or /" };
                     }
                     savedNumber = results;
-              /*      History().Add(new EvaluationResult { Result = results, Equation = fullInput });*/
-                    return new EvaluationResult { Result = results, Equation = fullInput };
+
+                    EvaluationResult currentResult = new EvaluationResult { Result = results, Equation = fullInput };
+                    AddHistory(currentResult);
+                    /*      History().Add(new EvaluationResult { Result = results, Equation = fullInput });*/
+                    /* return new EvaluationResult { Result = results, Equation = fullInput };*/
+                    return currentResult;
                 }
             }
 
@@ -131,21 +139,31 @@ namespace CalculatorCore
         }
 
 
-        public static List<EvaluationResult> AddHistory(EvaluationResult newResult)
+        public List<EvaluationResult> AddHistory(EvaluationResult newResult)
         {
-            var historyResult = new List<EvaluationResult>
+
+            _calcHistory.Add(newResult);
+
+            return _calcHistory;
+
+/*            var historyResult = new List<EvaluationResult>
             {
               
                 new EvaluationResult { Equation = "history example", Result = 1 }
             };
 
-            historyResult.Add(newResult);
+            .Add(newResult);
      
-            return historyResult;
+            return historyResult;*/
         }
 
 
-        public List<EvaluationResult> ShowHistory()
+        public List<EvaluationResult> DisplayHistory()
+        {
+            return _calcHistory;
+        }
+
+/*        public List<EvaluationResult> ShowHistory()
         {
             var historyResult = new List<EvaluationResult>
             {
@@ -154,7 +172,7 @@ namespace CalculatorCore
             };
             return historyResult;
         }
-
+*/
 
 
 
