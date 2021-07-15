@@ -38,13 +38,17 @@ namespace CalculatorWebPage.Controllers
 
             if (userSavedNumber != null)
             {
-                EvaluationResult _calculatedNumber = new EvaluationResult();
                 var calculator = new Calculator();
-                var newNumber = calculator.Evaluate(userSavedNumber);
+                var vm = new CalculatorViewModel();
+
+                EvaluationResult _calculatedNumber = new EvaluationResult();
+           
+                _calculatedNumber = calculator.Evaluate(userSavedNumber);
+
+                vm.UserResult = _calculatedNumber;
             }
 
             return View();
-
         }
 
         [HttpPost]
