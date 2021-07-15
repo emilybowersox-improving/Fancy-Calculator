@@ -19,8 +19,18 @@ namespace TestableCalculatorRunner
                 userInput = Console.ReadLine();
 
                 var myResults = calculator.Evaluate(userInput);
+                var showHistory = calculator.ShowHistory();
 
-                if (myResults.Result != 0)
+                if (userInput == "history")
+                {
+                    foreach (EvaluationResult element in showHistory)
+                    {
+                        Console.WriteLine($"{element.Equation}, {element.Result}");
+                  
+                    }
+                  
+                }
+                else if (myResults.Result != 0)
                 {
                     Console.WriteLine(myResults.Result);
                 }

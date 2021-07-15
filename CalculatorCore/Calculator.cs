@@ -55,7 +55,8 @@ namespace CalculatorCore
                             return new EvaluationResult { ErrorMessage = $"{contInput[0]} is not a valid continuing operator- try +, -, *, or /" };
                     }
                     savedNumber = results;
-                    return new EvaluationResult { Result = results };
+              /*      History().Add(new EvaluationResult { Result = results, Equation = fullInput });*/
+                    return new EvaluationResult { Result = results, Equation = fullInput };
                 }
             }
 
@@ -101,7 +102,7 @@ namespace CalculatorCore
                         results = number1 / number2;
                         break;
                     default:
-                    /*    throw new NotImplementedException("Not a valid operator");*/
+                        /*    throw new NotImplementedException("Not a valid operator");*/
                         return new EvaluationResult { ErrorMessage = $"{inputs[1]} is not a valid operator- try +, -, *, or /" };
                 }
                 /*  var key = "my-key";*/
@@ -113,7 +114,10 @@ namespace CalculatorCore
                               var str = context.Session.GetString(key);
                               var obj = JsonConvert.DeserializeObject<MyType>(str);*/
                 savedNumber = results;
-                return new EvaluationResult { Result = results };
+                EvaluationResult currentResult = new EvaluationResult{Result = results, Equation = fullInput};
+                AddHistory(currentResult);
+
+                return new EvaluationResult { Result = results, Equation = fullInput };
                 
             }
 
@@ -127,7 +131,32 @@ namespace CalculatorCore
         }
 
 
-        public History()
+        public static List<EvaluationResult> AddHistory(EvaluationResult newResult)
+        {
+            var historyResult = new List<EvaluationResult>
+            {
+              
+                new EvaluationResult { Equation = "history example", Result = 1 }
+            };
 
+            historyResult.Add(newResult);
+     
+            return historyResult;
         }
+
+
+        public List<EvaluationResult> ShowHistory()
+        {
+            var historyResult = new List<EvaluationResult>
+            {
+
+                new EvaluationResult { Equation = "history example", Result = 1 }
+            };
+            return historyResult;
+        }
+
+
+
+
     }
+}
