@@ -35,21 +35,16 @@ namespace CalculatorWebPage.Controllers
         public IActionResult Index()
         {
             var userSavedNumber = HttpContext.Session.GetString("EvaluateNumber");
-
-      
-                var calculator = new Calculator();
-                var vm = new CalculatorViewModel();
+            var calculator = new Calculator();
+            var vm = new CalculatorViewModel();
 
             if (userSavedNumber != null)
             {
                 EvaluationResult _calculatedNumber = new EvaluationResult();
-
                 _calculatedNumber = calculator.Evaluate(userSavedNumber);
-
                 vm.UserResult = _calculatedNumber;
             }
             
-
             return View(vm);
         }
 
@@ -59,6 +54,12 @@ namespace CalculatorWebPage.Controllers
             HttpContext.Session.SetString("EvaluateNumber", userNumber);
 
             return RedirectToAction("Index");
+        }
+
+
+        public IActionResult History()
+        {
+            return View();
         }
 
 

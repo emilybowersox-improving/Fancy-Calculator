@@ -58,11 +58,11 @@ namespace CalculatorWebPage
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-/*            endpoints.MapControllerRoute(
-                name: "calculate",
-                pattern: "{controller=Home}/{action=Calculate}/{id?}",
-                defaults: new { Controller = "Home", action = "Calculate" });*/
-         
+            endpoints.MapControllerRoute(
+                name: "history",
+                pattern: "{controller=Home}/{action=History}");
+     /*           defaults: new { Controller = "Home", action = "History" });
+*/
             });
         }
     }
