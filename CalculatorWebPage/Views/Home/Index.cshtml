@@ -19,9 +19,19 @@
 
 @if (Model.UserResult != null)
     {
-    <div class="text-center">
+<div class="text-center">
+    @if (Model.UserResult.Equation != null)
+    {
         <h4>Your result is: @Model.UserResult.Result</h4>
-    </div>
+        <h6>Your equation was @Model.UserResult.Equation</h6>
+    }
+
+    @if (Model.UserResult.ErrorMessage != null)
+    {
+        <h4>Your input @Model.UserResult.ErrorMessage</h4>
+    }
+
+</div>
     }
 
 

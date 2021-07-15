@@ -69,7 +69,7 @@ namespace CalculatorCore
 
             if (inputs.Length != 3 && inputs.Length != 2)
             {
-                return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not valid. Input must be be in the form '3 + 5' or '+ 5'" };
+                return new EvaluationResult { ErrorMessage = $"'{fullInput}' is not valid. Your first input must be be in the form '3 + 5' and subsequent inputs can be in either the form '3 + 5' or '+ 5'" };
             }
 
             if (decimal.TryParse(inputs[0], out number1) == false)
