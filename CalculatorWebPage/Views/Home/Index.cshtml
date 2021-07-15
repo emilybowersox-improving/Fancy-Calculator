@@ -10,17 +10,25 @@
 <div class="text-center">
     <form action="/" method="post">
         <label>Enter the calculation you would like to perform:</label>
-@*        name = "Number" when using CalcInput class - Number*@
+        @*        name = "Number" when using CalcInput class - Number*@
         <input type="text" name="userNumber" placeholder="Numbers go here" value="" />
         <br />
         <button type="submit">Calculate!</button>
     </form>
 </div>
 
-@*@if (Model.LastNumber != null)
-{
-<div class="text-center">
-    <h4>The last number you entered was: @Model.LastNumber.Number</h4>
+@if (Model.UserResult != null)
+    {
+    <div class="text-center">
+        <h4>Your result is: @Model.UserResult.Result</h4>
+    </div>
+    }
 
-</div>
-}*@
+
+@*@if (Model.LastNumber != null)
+    {
+    <div class="text-center">
+        <h4>The last number you entered was: @Model.LastNumber.Number</h4>
+
+    </div>
+    }*@

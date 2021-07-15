@@ -36,19 +36,21 @@ namespace CalculatorWebPage.Controllers
         {
             var userSavedNumber = HttpContext.Session.GetString("EvaluateNumber");
 
-            if (userSavedNumber != null)
-            {
+      
                 var calculator = new Calculator();
                 var vm = new CalculatorViewModel();
 
+            if (userSavedNumber != null)
+            {
                 EvaluationResult _calculatedNumber = new EvaluationResult();
-           
+
                 _calculatedNumber = calculator.Evaluate(userSavedNumber);
 
                 vm.UserResult = _calculatedNumber;
             }
+            
 
-            return View();
+            return View(vm);
         }
 
         [HttpPost]
