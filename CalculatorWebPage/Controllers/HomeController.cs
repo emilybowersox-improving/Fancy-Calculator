@@ -25,16 +25,20 @@ namespace CalculatorWebPage.Controllers
 
         public IActionResult Index()
         {
-            var userSavedNumber = HttpContext.Session.GetString("EvaluateNumber");
-            var calculator = new Calculator();
-            var vm = new CalculatorViewModel();
+  /*          var userSavedNumber = HttpContext.Session.GetString("EvaluateNumber");
+            var calculator = new Calculator();*/
+         
 
-            if (userSavedNumber != null)
-            {
-                EvaluationResult _calculatedNumber = new EvaluationResult();
-                _calculatedNumber = calculator.Evaluate(userSavedNumber);
-                vm.UserResult = _calculatedNumber;
-            }
+            /*     if (userSavedNumber != null)
+                 {
+               *//*      EvaluationResult _calculatedNumber = new EvaluationResult();
+                     _calculatedNumber = calculator.Evaluate(userSavedNumber);*//*
+                     vm.UserResult = _calculatedNumber;
+                 }*/
+            EvaluationResult currentResult = HttpContext.Session.Get<EvaluationResult>("CurrentResult");
+      /*      HttpContext.Session.Get<Calculator>("Calculator");*/
+            var vm = new CalculatorViewModel();
+            vm.UserResult = currentResult;
             
             return View(vm);
         }
@@ -43,7 +47,20 @@ namespace CalculatorWebPage.Controllers
         [HttpPost]
         public IActionResult Index(string userNumber)
         {
-            HttpContext.Session.SetString("EvaluateNumber", userNumber);
+            Calculator calculator = HttpContext.Session.Get<Calculator>("Calculator");
+            if (calculator == null)
+            {
+                calculator = new Calculator();
+            }
+
+            EvaluationResult calculationResult = calculator.Evaluate(userNumber);
+            HttpContext.Session.Set("CurrentResult", calculationResult);
+
+            HttpContext.Session.Set("Calculator", calculator);
+
+
+
+    /*        HttpContext.Session.SetString("EvaluateNumber", userNumber);*/
 
             return RedirectToAction("Index");
         }
